@@ -102,9 +102,9 @@ analytics:
 
 # Site Author
 author:
-  name             : "응애 나 프로그래밍 아가"
+  name             : "응애-나-프로그래밍-아가"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
+  bio              : "Programing"
   location         : "Seoul, Korea"
   email            :
   links:
