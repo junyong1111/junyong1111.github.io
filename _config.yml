@@ -41,7 +41,7 @@ comments:
     num_posts            : # 5 (default)
     colorscheme          : # "light" (default), "dark"
   utterances:
-    theme                : # "github-light" (default), # "github-dark"
+    theme                : # "github-light" (default), "github-dark"
     issue_term           : # "pathname" (default)
   giscus:
     repo_id              : # Shown during giscus setup at https://giscus.app
@@ -59,8 +59,8 @@ reCaptcha:
 atom_feed:
   path                   : # blank (default) uses feed.xml
   hide                   : # true, false (default)
-search                   :  true #false (default)
-search_full_content      :  true #false (default)
+search                   :  true #, false (default)
+search_full_content      :  true #, false (default)
 search_provider          : # lunr (default), algolia, google
 algolia:
   application_id         : # YOUR_APPLICATION_ID
@@ -137,8 +137,8 @@ footer:
       icon: "fab fa-fw fa-facebook-square"
       # url:
     - label: "GitHub"
-      icon: "https://github.com/junyong1111"
-      # url:
+      icon: "fab fa-fw fa-github"
+       url: "https://github.com/junyong1111"
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url:
