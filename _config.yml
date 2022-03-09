@@ -103,7 +103,7 @@ analytics:
 # Site Author
 author:
   name             : "응애나프로그래밍아가"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : assets/images/1.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Programing"
   location         : "Seoul, Korea"
   email            :
