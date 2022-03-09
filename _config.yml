@@ -106,7 +106,7 @@ author:
   avatar           : assets/images/1.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Programing"
   location         : "Seoul, Korea"
-  email            :
+  email            : "jypark93@kookmin.ac.kr"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
