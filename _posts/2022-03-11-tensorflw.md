@@ -1,6 +1,6 @@
 ---
-title: "자료구조를 위한 C언어 문법"
-layout: splash
+title: "Tensorflow_Step1"
+layout: posts #splash
 classes:
   - landing
   - dark-theme
