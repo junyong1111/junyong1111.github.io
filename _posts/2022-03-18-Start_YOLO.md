@@ -11,4 +11,4 @@ categories:
 ---
 
 #### YOLO
-YOLO(You Only Look Once)
+YOLO(You Only Look Once) : 다중 객체 인식
