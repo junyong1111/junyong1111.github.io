@@ -1,26 +1,13 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 int main(){
-    int arr[5] ={0};
-    int avg = 0 ;
-    for(int i=0; i<5; i++)
-        scanf("%d", &arr[i]);
-    for(int i=0;i<5;i++){
-        if(arr[i] >=40){
-            avg += arr[i];
-        }
-        else{
-            avg += 40;
-        }
-    }//for
-    avg /= 5;
-    
-    printf("%d ", avg);
-    printf("\n");
-
+    int fix = 0;
+    int varialble = 0;
+    int labtop = 0;
+    int money = 0;
+    int cnt = 0;
+    scanf("%d %d %d", &fix, &varialble, &labtop );
     
     
-
     return 0;
 }
