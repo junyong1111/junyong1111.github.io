@@ -2,11 +2,8 @@
 #include <stdlib.h>
 
 int main(){
-    int a ;
-    scanf("%d" , &a);
-    switch(a){
-        
-    }
+    printf("hello world");
 
     return 0;
 }
+
