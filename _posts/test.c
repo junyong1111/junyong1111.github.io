@@ -3,11 +3,16 @@
 #include <stdbool.h>
 
 int main(void){
-    int A,B;
-
-    while((scanf("%d %d", &A, &B)) ==2){
-        printf("%d\n", A+B);
+    int N = 0;
+    scanf("%d", &N);
+    for(int i=0; i<N; i++){
+        for(int j=0; j<N; j++){
+            if(i+j <N)
+                printf("*");
+            else
+                continue;
+        }
+        printf("\n");
     }
-
     return 0;
 }
