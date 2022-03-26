@@ -2,15 +2,12 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-int Factorial(int n) {
-    if (n > 1)
-        return n * Factorial(n - 1);
-    else return 1;
-}
 int main(void){
-    int N;
-    scanf("%d", &N);
-    printf("%d\n",Factorial(N));
+    int A,B;
+
+    while((scanf("%d %d", &A, &B)) ==2){
+        printf("%d\n", A+B);
+    }
 
     return 0;
 }
