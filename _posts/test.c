@@ -3,26 +3,30 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define MAX_SIZE 1000000
-
-int main(void){
-    int i, len;
+int main(){
+    int N = 10;
+    int *arr = malloc(N);
+    bool check = false;
     int cnt = 1;
-    char str[MAX_SIZE]; 
-    scanf("%[^\n]", str); 
-    len = strlen(str);
-    if(len == 1) { 
-        if(str[0] == ' ') {
-             printf("0\n"); 
-             return 0; 
-        } 
-    } 
-    for(i = 1; i < len-1; i++) { 
-        if(str[i] == ' ') 
-        cnt++; 
-    } 
-    printf("%d\n", cnt); 
-    return 0; 
+    for(int i=0; i<N; i++){
+        scanf("%d",&arr[i]);
+        arr[i] = arr[i]%42;
+    }
+    int ch = arr[0];
+    for(int i=1; i<N; i++){
+        if(ch == arr[i] && check == false){check = true; cnt ++;}
+        else{
+
+        }
     }
 
+    for(int i=0; i<N; i++){
+        printf("%d ",arr[i]);
+    }printf("\n");
 
+
+
+
+    free(arr);
+    return 0;
+}
