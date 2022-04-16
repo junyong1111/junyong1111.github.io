@@ -1,4 +1,4 @@
 User-agent: *
-Allow: /
+Allow:/
 
 Sitemap: https://junyong1111.github.io/sitemap.xml
