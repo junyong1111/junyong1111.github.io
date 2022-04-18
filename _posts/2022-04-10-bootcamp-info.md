@@ -3,7 +3,7 @@ title: "2022's 부트캠프 정보"
 header:
   teaser: /assets/images/1.jpg
   og_image: /assets/images/1.jpg
-data: 2022-04-18
+date: 2022-04-18
 show_date: true
 layout: single
 classes:
