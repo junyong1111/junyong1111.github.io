@@ -1,8 +1,8 @@
 ---
 title: "딥러닝의 기초"
 header:
-  teaser: /assets/images/1.jpg
-  og_image: /assets/images/1.jpg
+  teaser: /assets/images/AI.png
+  og_image: /assets/images/AI.png
 show_date: true
 layout: single
 date : 2022-06-06
@@ -13,6 +13,9 @@ categories:
   - 인공지능
   - 딥러닝
 ---   
+
+<img width="803" alt="20195298_박준용" src="https://user-images.githubusercontent.com/79856225/172140056-2a099223-1118-4f85-8054-8308e8b7f6bd.png">
+
 
 # NVIDIA 딥러닝 기초
 
