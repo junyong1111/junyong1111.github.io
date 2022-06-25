@@ -1,29 +1,30 @@
 ---
 title: "딥러닝의 기초"
 header:
-  teaser: /assets/images/AI.png
-  og_image: /assets/images/AI.png
+  overlay_image: /assets/images/AI.png
+teaser: /assets/images/AI.png
 show_date: true
 layout: single
-date : 2022-06-09
+date: 2022-06-09
 classes:
   - landing
   - dark-theme
 categories:
   - 인공지능
   - 딥러닝
----   
+---
 
 # NVIDIA 딥러닝 기초
 
 ### 목표
+
 - 딥러닝 프로젝트를 처리할 수 있는 기반을 형성
 - 딥러닝의 전반적인 기초 지식 제공
 - 딥러닝에 관련 기사 ,튜토리얼 제공
 
 <details>
 <summary> 1. MNIST </summary>
-<div markdown="1">  
+<div markdown="1">
 
 Google의 Tensorflow를 이용하여 MNIST데이터를 다운받아서 실습진행
 
@@ -31,16 +32,17 @@ Google의 Tensorflow를 이용하여 MNIST데이터를 다운받아서 실습진
 import matplotlib.pyplot as plt
 from tensorflow.keras.datasets import mnist
 ```
-다운받은 MNIST 데이터를 각각 나눠준다 
+
+다운받은 MNIST 데이터를 각각 나눠준다
+
 - 학습 데이터
 - 학습 정답데이터
 - 검증 데이터
-- 검증 정답데이터 
+- 검증 정답데이터
 
 이렇게 총 4개의 데이터로 나눠 준 후 각각 확인해보면
 학습 데이터의 크기는 총 6만장이며 28x28픽셀로 되어있고 검증 데이터의 크기는 1만장이며 마찬가지로 28x28픽셀이다 현재 unit8의 정수형 데이터 타입을 가지고있으며 각각의 이미지는 최소 0~ 최대 255의 값들이 저장되어있는걸 확인할 수 있다.  
 첫번째 학습데이터의 정보를 출력해보면 5의 흑백 이미지를 확인 할 수 있다. 이 값이 5인지 확인하고 싶다면 학습데이터의 정답값이 들어있는 y_train을 출력함으로서 확인이 가능하다.
-
 
 ```python
 (x_train, y_train), (x_valid, y_valid) = mnist.load_data()
@@ -65,7 +67,7 @@ x_valid = x_valid.reshape(10000, 784)
 x_train.shape
 x_train[0]
 x_train = x_train / 255
-x_valid = x_valid / 255 
+x_valid = x_valid / 255
 print(x_train.dtype)
 print(x_train.min())
 print(x_train.max())
@@ -82,7 +84,7 @@ y_valid = keras.utils.to_categorical(y_valid, num_categories)
 y_train[0:9]
 ```
 
-모델생성을 하기위해서 케라스에서 제공해주는 함수를 이용한다. 현재 레이어의 값을 다음레이어에 영향을 주기위해서 Dense를 이용한다 최초 모델의 레이어를 생성할때는 모델의 Input값을 알려줘야 하므로 784을 인자로 넣어준다 활성화 함수로는 relu를 이용했다. relu는 일반적으로는 가장 효율이 좋다 그 이후 마지막 레이어에서는 10개의 클래스를 분류하므로  softmax함수를 이용하여 확률값으로 내보낸다. 이 때 model.summay()함수를 이용하여 현재 만든 모델에 대해 시각적으로 확인할 수 있다. 마지막으로 모델의 손실함수를 설정해준다 이때 분류모델에서 사용하는 크로스엔트로피를 사용하였다.
+모델생성을 하기위해서 케라스에서 제공해주는 함수를 이용한다. 현재 레이어의 값을 다음레이어에 영향을 주기위해서 Dense를 이용한다 최초 모델의 레이어를 생성할때는 모델의 Input값을 알려줘야 하므로 784을 인자로 넣어준다 활성화 함수로는 relu를 이용했다. relu는 일반적으로는 가장 효율이 좋다 그 이후 마지막 레이어에서는 10개의 클래스를 분류하므로 softmax함수를 이용하여 확률값으로 내보낸다. 이 때 model.summay()함수를 이용하여 현재 만든 모델에 대해 시각적으로 확인할 수 있다. 마지막으로 모델의 손실함수를 설정해준다 이때 분류모델에서 사용하는 크로스엔트로피를 사용하였다.
 
 ```python
 from tensorflow.keras.models import Sequential
@@ -103,16 +105,17 @@ history = model.fit(
     x_train, y_train, epochs=5, verbose=1, validation_data=(x_valid, y_valid)
 )
 ```
+
 </div>
 </details>
 
 <details>
 <summary> 2. 미국 수화 데이터세트 이미지 분류 </summary>
-<div markdown="1">  
+<div markdown="1">
 
 캐글에서 제공해주는 미국 수화 데이터세트를 이용하여 모델을 트레이닝한다
 
-csv파일을 로드하기위해서 pands 라이브러리를 이용한 후 각각의 데이터들의 값들을 확인해보면 각 label값  이미지의 픽셀값을 나타내고있다. 학습 데이터라벨과 검증 데이터 라벨의 값을 가져온 뒤 삭제해주고 학습 데이터와 검증 데이터의 값을 넣어준다. 이후 확인해보면  트레이닝을 위한 각각 784개 픽셀을 포함하는 27,455개의 이미지와 검증을 위해서는 7,172개의 이미지와 라벨이 있는걸 확인 할 수 있다.
+csv파일을 로드하기위해서 pands 라이브러리를 이용한 후 각각의 데이터들의 값들을 확인해보면 각 label값 이미지의 픽셀값을 나타내고있다. 학습 데이터라벨과 검증 데이터 라벨의 값을 가져온 뒤 삭제해주고 학습 데이터와 검증 데이터의 값을 넣어준다. 이후 확인해보면 트레이닝을 위한 각각 784개 픽셀을 포함하는 27,455개의 이미지와 검증을 위해서는 7,172개의 이미지와 라벨이 있는걸 확인 할 수 있다.
 [https://www.kaggle.com/code/emilyjiminroh/cnn-sign-language-mnist-eng-kor/data]
 
 ```python
@@ -142,7 +145,7 @@ num_images = 20
 for i in range(num_images):
     row = x_train[i]
     label = y_train[i]
-    
+
     image = row.reshape(28,28)
     plt.subplot(1, num_images, i+1)
     plt.title(label, fontdict={'fontsize': 30})
@@ -150,17 +153,23 @@ for i in range(num_images):
     plt.imshow(image, cmap='gray')
 ```
 
-1번 MNIST 실습에서 했던거와 마찬가지로 데이터를 로드 이후 
+1번 MNIST 실습에서 했던거와 마찬가지로 데이터를 로드 이후
+
 1. 0 ~ 255의 값을 0 ~ 1의 부동소수점으로 정규화
 2. 총 24개의 레이블로 범주 인코딩
-3. 모델 생성 
+3. 모델 생성
+
 - 활성화 함수로는 relu 사용 첫 레이어는 input값 지정
 - 활성화 함수로 relu 사용 이후 자동으로 input값이 지정되어있음
 - 분류를 위해서 softmax로 각각 클래스별로 확률값 반환
+
 4. 모델 확인
-5. 모델 컴파일 
+5. 모델 컴파일
+
 - 분류모델의 손실함수 크로스엔트로피 사용
+
 6. 모델 학습
+
 - 총 20 eopchs만큼 학습
 
 ```python
@@ -187,17 +196,17 @@ model.compile(loss='categorical_crossentropy', metrics=['accuracy'])
 
 model.fit(x_train, y_train, epochs=20, verbose=1, validation_data=(x_valid, y_valid))
 ```
-### 결과 : 결과값을 확인해보면 학습데이터로는 높은 정확도가 나왔지만 실제 검증데이터의 정확도는 그에 비해 낮은편이다 예측결과는 높지만 실제 결과값의 정확도가 낮은 과적합의 문제가 발생한걸 확인해 볼 수 있었다.
 
+### 결과 : 결과값을 확인해보면 학습데이터로는 높은 정확도가 나왔지만 실제 검증데이터의 정확도는 그에 비해 낮은편이다 예측결과는 높지만 실제 결과값의 정확도가 낮은 과적합의 문제가 발생한걸 확인해 볼 수 있었다.
 
 </div>
 </details>
 
 <details>
 <summary> 3.합성곱신경망 (Convolutional Neural Networks) </summary>
-<div markdown="1">  
+<div markdown="1">
 
-이미지 분류에 자주 사용되는 CNN모델에 대해 학습   
+이미지 분류에 자주 사용되는 CNN모델에 대해 학습  
 수화이미지에서 사용하였던 방법과 마찬가지이다.
 
 1. pandas를 이용하여 데이터 로드
@@ -206,7 +215,7 @@ model.fit(x_train, y_train, epochs=20, verbose=1, validation_data=(x_valid, y_va
 4. 24개의 범주 레이블
 5. 0 ~ 1사이에 값으로 정규화
 
-위 과정을 마치고 확인해보면 아까와 마찬가지로 학습데이터 27455장의 784 1차원 학습 데이터, 7172장의 784 1차원 검증데이터로 되어있다. 
+위 과정을 마치고 확인해보면 아까와 마찬가지로 학습데이터 27455장의 784 1차원 학습 데이터, 7172장의 784 1차원 검증데이터로 되어있다.
 
 ```python
 import tensorflow.keras as keras
@@ -249,26 +258,33 @@ x_train.shape, x_valid.shape
 ```
 
 모델을 생성하는 단계이다.
+
 1. Conv2D
-- 2D 컨볼루션 레이어이며 작은 커널은 입력 이미지들을 훑으며, 분류에 중요한 특징들을 파악한다. 모델의 초기 컨볼루션은 선과 같은 간단한 특징을 탐지한다. 이후 컨볼루션은 점점 더 복잡한 특징을 탐지한다.  
-- 75는 우리가 학습하게 될 필터(Filter)의 갯수를 의미하며  
-- (3,3) 은 필터의 크기를 의미한다. 
+
+- 2D 컨볼루션 레이어이며 작은 커널은 입력 이미지들을 훑으며, 분류에 중요한 특징들을 파악한다. 모델의 초기 컨볼루션은 선과 같은 간단한 특징을 탐지한다. 이후 컨볼루션은 점점 더 복잡한 특징을 탐지한다.
+- 75는 우리가 학습하게 될 필터(Filter)의 갯수를 의미하며
+- (3,3) 은 필터의 크기를 의미한다.
 - strides는 얼만큼의 보폭으로 움직일지
 - padding은 입력 이미지와 결과 이미지의 크기를 맞추기 위해서 사용되며 제로패딩 또는 동일패딩을 사용한다.
 
 2. BatchNormalization()
+
 - 입력을 정규화하는 것과 마찬가지로, 배치정규화는 hidden layer들의 값을 scaling하여 학습을 개선한다.
 
 3. MaxPool2D()
+
 - 필터를 이용하여 계산된 값들 중 최대값만 가져온다 더 낮은 해상도로 축소하는 과정이며 이렇게 하면 모델이 약간의 변화에 더욱 견고하게 만들 수 있고, 모델의 학습 및 추론을 더욱 빠르게 할 수 있습니다.
 
 4. Dropout()
+
 - 위 수화예제에서 발생하였던 과적합을 방지하기 위한 방법 중 하나이며 무작위로 뉴런을 제외시키는 방식이다.
 
 5. Flatten()
+
 - 다차원입력을 1차원으로 바꿔주는 평탄화 작업을 해주며 분류를 위한 마지막 레이어로 들어간다.
 
 6. Dense()
+
 - 평탄화 작업한 feature vector를 입력으로 받아 어떤 feature가 분류에 기여하는지를 확인하며 마지막에는 분류를 위해 24개의 클래스 softmax를 이용한다.
 
 위 과정을 거친 후 모델를 확인해보면 이전보다 파라메터 개수가 상당히 줄어든걸 확인 할 수 있으며 2번 실습과 같이 20epoch로 학습을 진행한다.
@@ -285,7 +301,7 @@ from tensorflow.keras.layers import (
 )
 
 model = Sequential()
-model.add(Conv2D(75, (3, 3), strides=1, padding="same", activation="relu", 
+model.add(Conv2D(75, (3, 3), strides=1, padding="same", activation="relu",
                  input_shape=(28, 28, 1)))
 model.add(BatchNormalization())
 model.add(MaxPool2D((2, 2), strides=2, padding="same"))
@@ -306,16 +322,14 @@ model.compile(loss="categorical_crossentropy", metrics=["accuracy"])
 model.fit(x_train, y_train, epochs=20, verbose=1, validation_data=(x_valid, y_valid))
 ```
 
-### 결과 : 학습결과와 검증결과 둘 다 상당히 개선된 모습을 확인 할 수 있었다. 이와 같이 같은 데이터의 모델을 바꾸는 방법으로 아까의 과적합 문제를 해결할 수 있다. 
-
+### 결과 : 학습결과와 검증결과 둘 다 상당히 개선된 모습을 확인 할 수 있었다. 이와 같이 같은 데이터의 모델을 바꾸는 방법으로 아까의 과적합 문제를 해결할 수 있다.
 
 </div>
 </details>
 
-
 <details>
 <summary> 4. 데이터 증강 </summary>
-<div markdown="1">  
+<div markdown="1">
 
 위 결과에서 과적합을 피하는 방법 중 하나로 모델의 아키텍쳐를 바꾸는 방법이 있었다. 뿐만 아니라 과적합을 피하는 방법 중 또다른 하나는 더 많은 데이터를 학습하는 방법이 있다. 기존에 있던 데이터를 증강하기 위하여 데이터 증강에 대한 방법에 대해 알아보자.
 
@@ -373,7 +387,7 @@ from tensorflow.keras.layers import (
 )
 
 model = Sequential()
-model.add(Conv2D(75, (3, 3), strides=1, padding="same", activation="relu", 
+model.add(Conv2D(75, (3, 3), strides=1, padding="same", activation="relu",
                  input_shape=(28, 28, 1)))
 model.add(BatchNormalization())
 model.add(MaxPool2D((2, 2), strides=2, padding="same"))
@@ -390,14 +404,15 @@ model.add(Dropout(0.3))
 model.add(Dense(units=num_classes, activation="softmax"))
 ```
 
-데이터 증강을 위하여 ImageDataGenerator 함수를 사용한다 
+데이터 증강을 위하여 ImageDataGenerator 함수를 사용한다
+
 - 이미지 회전
 - 이미지 확대
 - 좌우 이동
 - 상하 이동
 - 수평 이동
 - 수직 이동
-위와 같은 방법을 통해 하나의 이미지를 여러장의 데이터로 증강하는게 가능하다 또한 무작위 샘플에대한 처리를 위해 자동으로 배치처리가 된다.
+  위와 같은 방법을 통해 하나의 이미지를 여러장의 데이터로 증강하는게 가능하다 또한 무작위 샘플에대한 처리를 위해 자동으로 배치처리가 된다.
 
 ```python
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
@@ -409,7 +424,7 @@ datagen = ImageDataGenerator(
     height_shift_range=0.1,  # randomly shift images vertically (fraction of total height)
     horizontal_flip=True,  # randomly flip images horizontally
     vertical_flip=False, # Don't randomly flip images vertically
-)  
+)
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -424,7 +439,7 @@ for i in range(batch_size):
 plt.show()
 ```
 
-증강된 데이터를 이용하여 모델학습을 시작한다 이 때 무한히 데이터를 생성하는걸 방지하기 위해 steps_per_epoch라는 인수를 사용하여 각 에포크가 얼마나 오랫동안 실행되어야 하는지를 명시적으로 설정하여야 한다. 여기서 사용할 일반적인 방식인 steps * batch_size = number_of_images_trained in an epoch는 단계 수를 증강되지 않은 데이터세트 크기를 batch_size(기본값 32)로 나눈 값과 동일하게 설정하는 것이기 때문이다.
+증강된 데이터를 이용하여 모델학습을 시작한다 이 때 무한히 데이터를 생성하는걸 방지하기 위해 steps_per_epoch라는 인수를 사용하여 각 에포크가 얼마나 오랫동안 실행되어야 하는지를 명시적으로 설정하여야 한다. 여기서 사용할 일반적인 방식인 steps \* batch_size = number_of_images_trained in an epoch는 단계 수를 증강되지 않은 데이터세트 크기를 batch_size(기본값 32)로 나눈 값과 동일하게 설정하는 것이기 때문이다.
 
 ```python
 datagen.fit(x_train)
@@ -435,18 +450,19 @@ model.fit(img_iter,
           validation_data=(x_valid, y_valid))
 ```
 
-### 결과 : 이전 모델보다 검증 정확도가 더 높고 일관적인 모습을 확인할 수 있다 위와 같은 방법으로 일반화가 개선되었고 새로운 데이터에 대한 예측도 개선된걸 확인 할 수 있었다. 
+### 결과 : 이전 모델보다 검증 정확도가 더 높고 일관적인 모습을 확인할 수 있다 위와 같은 방법으로 일반화가 개선되었고 새로운 데이터에 대한 예측도 개선된걸 확인 할 수 있었다.
 
 ```python
-### 다음 실습에 사용하기 위하여 현재 모델을 저장 ### 
+### 다음 실습에 사용하기 위하여 현재 모델을 저장 ###
 model.save('asl_model')
 ```
+
 </div>
 </details>
 
 <details>
 <summary>5. 모델 배포 </summary>
-<div markdown="1">  
+<div markdown="1">
 
 위 학습에서 만들었던 모델을 배포한다.  
 저장해두었던 모델을 로드한 후 모델에 대해 확인해본다.
@@ -461,7 +477,7 @@ model.summary()
 현재 이미지 데이터는 학습에 사용했던 데이터와 크기와 RGB가 다르기때문에 해당 이미지를 학습에 사용했던 데이터와 맞추기 위하여 함수를 만들어 28X28의 흑백 이미지로 변환하다.
 
 ```python
-### 이미지 확인을 위한 함수정의 ### 
+### 이미지 확인을 위한 함수정의 ###
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 
@@ -473,7 +489,7 @@ show_image('/content/b.png')
 ```
 
 ```python
-### 데이터 세트와 맞게 28x28의 GraySacle로 변환 ### 
+### 데이터 세트와 맞게 28x28의 GraySacle로 변환 ###
 from tensorflow.keras.preprocessing import image as image_utils
 
 def load_and_scale_image(image_path):
@@ -489,11 +505,11 @@ plt.imshow(image, cmap='gray')
 ```python
 ## 20195298 박준용 ##
 image = image_utils.img_to_array(image)
-image = image.reshape(1,28,28,1) 
+image = image.reshape(1,28,28,1)
 image = image / 255
 ```
 
-이제 해당 이미지를 통해 예측을 실행해본다 
+이제 해당 이미지를 통해 예측을 실행해본다
 출력값은 확률값이므로 그 중 가장 큰 확률값을 찾은 후 해당 알파벳에 해당하는 값을 반환하는 방식이다.
 
 ```python
@@ -512,13 +528,13 @@ dictionary[np.argmax(prediction)]
 ```
 
 ```python
-### 예측을 위한 함수 ### 
+### 예측을 위한 함수 ###
 
 def predict_letter(file_path):
     show_image(file_path)
     image = load_and_scale_image(file_path)
     image = image_utils.img_to_array(image)
-    image = image.reshape(1,28,28,1) 
+    image = image.reshape(1,28,28,1)
     image = image/255
     prediction = model.predict(image)
     # convert prediction to letter
@@ -535,15 +551,15 @@ predict_letter("/content/a.png")
 
 <details>
 <summary> 6. 사전 트레이닝된 모델 </summary>
-<div markdown="1">  
+<div markdown="1">
 
 딥러닝은 데이터 세트를 구하는데 어려움이 많다 이럴때 미리 트레이닝된 모델을 사용하여 이를 해결할 수 있다.  
-오로지 개만 통과할 수 있는 자동문. 
+오로지 개만 통과할 수 있는 자동문.
 일반적인 VGG16을 이용하여 학습진행
 
 ```python
 from tensorflow.keras.applications import VGG16
-  
+
 # load the VGG16 network *pre-trained* on the ImageNet dataset
 model = VGG16(weights="imagenet")
 model.summary()
@@ -572,7 +588,7 @@ from tensorflow.keras.applications.vgg16 import preprocess_input
 def load_and_process_image(image_path):
     # Print image's original shape, for reference
     print('Original image shape: ', mpimg.imread(image_path).shape)
-    
+
     # Load in the image with a target size of 224, 224
     image = image_utils.load_img(image_path, target_size=(224, 224))
     # Convert the image from a PIL format to a numpy array
@@ -586,7 +602,7 @@ def load_and_process_image(image_path):
     return image
 
 ### 확인용 ###
-processed_image = load_and_process_image("/content/brown_bear.jpg")  
+processed_image = load_and_process_image("/content/brown_bear.jpg")
 ```
 
 다음은 모델 예측에 필요한 함수이며 총 3개의 이미지로 테스트를 진행해보았다.
@@ -609,7 +625,7 @@ readable_prediction("/content/brown_bear.jpg")
 readable_prediction("/content/sleepy_cat.jpg")
 ```
 
-위 3가지 케이스에 각각 강아지, 곰, 고양이를 잘 인식하였다. 이제 해당 모델을  사용하여 개만 출입을 허용하고 고양이는 내부에 있게 할 수 있습니다. 개는 범주 151 ~ 268이고, 고양이는 범주 281 ~ 285이다.
+위 3가지 케이스에 각각 강아지, 곰, 고양이를 잘 인식하였다. 이제 해당 모델을 사용하여 개만 출입을 허용하고 고양이는 내부에 있게 할 수 있습니다. 개는 범주 151 ~ 268이고, 고양이는 범주 281 ~ 285이다.
 
 ```python
 import numpy as np
@@ -630,16 +646,16 @@ doggy_door("/content/brown_bear.jpg")
 doggy_door("/content/sleepy_cat.jpg")
 ```
 
-### 결과 : 사전에 학습된 모델을 이용하여 학습과정 없이 자신의 목적에 맞게 딥러닝을 이용할 수 있었다. 
+### 결과 : 사전에 학습된 모델을 이용하여 학습과정 없이 자신의 목적에 맞게 딥러닝을 이용할 수 있었다.
 
 </div>
 </details>
 
 <details>
 <summary> 7.전이학습 </summary>
-<div markdown="1">  
+<div markdown="1">
 
-위 과정은 미리 학습된 데이터를 사용하기만 하는 과정이였다면 전이학습은 미리학습된 데이터를 가지고 다시 학습을하는 과정이다. 전이 학습은 크고 다양한 데이터세트가 없는 경우에 특히 강력한효과가 있다. 이런 경우에는 처음부터 트레이닝된 모델이 트레이닝 데이터를 빠르게 기억할 가능성이 높지만 새 데이터를 제대로 일반화할 수 없다. 전이 학습을 이용하면 소규모 데이터세트에 대해 정확하고 강력한 모델을 트레이닝할 수 있는 가능성을 높일 수 있다.  
+위 과정은 미리 학습된 데이터를 사용하기만 하는 과정이였다면 전이학습은 미리학습된 데이터를 가지고 다시 학습을하는 과정이다. 전이 학습은 크고 다양한 데이터세트가 없는 경우에 특히 강력한효과가 있다. 이런 경우에는 처음부터 트레이닝된 모델이 트레이닝 데이터를 빠르게 기억할 가능성이 높지만 새 데이터를 제대로 일반화할 수 없다. 전이 학습을 이용하면 소규모 데이터세트에 대해 정확하고 강력한 모델을 트레이닝할 수 있는 가능성을 높일 수 있다.
 
 - 특정한 개만 출입이 가능한 자동문
 - 사전학습된 VGG16사용
@@ -656,7 +672,7 @@ base_model = keras.applications.VGG16(
 base_model.summary()
 ```
 
-새 레이어를 사전 트레이닝된 모델에 추가하기 전에 수행해야 할 중요한 단계가 바로  모델의 사전 트레이닝된 레이어를 동결하는 것이다. 모델 동결은 트레이닝할 때 사전 트레이닝된 모델에서 기본 레이어는 업데이트하지 않고.  새로운 분류를 위해 우리가 끝에 추가하는 새 레이어만 업데이트하게 됩니다. 
+새 레이어를 사전 트레이닝된 모델에 추가하기 전에 수행해야 할 중요한 단계가 바로 모델의 사전 트레이닝된 레이어를 동결하는 것이다. 모델 동결은 트레이닝할 때 사전 트레이닝된 모델에서 기본 레이어는 업데이트하지 않고. 새로운 분류를 위해 우리가 끝에 추가하는 새 레이어만 업데이트하게 됩니다.
 
 기본 레이어를 동결하는 것은 모델에 대해 트레이닝 가능을 False로 설정하기만 하면 된다.
 
@@ -664,14 +680,15 @@ base_model.summary()
 base_model.trainable = False
 ```
 
-새 레이어를 사전 트레이닝된 모델에 추가하는 과정이다.  새 레이어는 사전 트레이닝된 레이어의 피처를 취해 새 데이터세트에 대한 예측으로 변환한다. 
-다음은  모델에 두 개의 레이어를 추가하는것이다. 
-1.  이전의 CNN(Convolutional Neural Network)에서 봤던 풀링 레이어이다. 
+새 레이어를 사전 트레이닝된 모델에 추가하는 과정이다. 새 레이어는 사전 트레이닝된 레이어의 피처를 취해 새 데이터세트에 대한 예측으로 변환한다.
+다음은 모델에 두 개의 레이어를 추가하는것이다.
+
+1.  이전의 CNN(Convolutional Neural Network)에서 봤던 풀링 레이어이다.
 2.  그런 다음에는 Bo인지 아닌지를 분류할 마지막 레이어를 추가해야 한다. 이는 한 개의 출력을 포함하는 밀접하게 연결된 레이어가 된다.
 
 ```python
 inputs = keras.Input(shape=(224, 224, 3))
-# Separately from setting trainable on the model, we set training to False 
+# Separately from setting trainable on the model, we set training to False
 x = base_model(inputs, training=False)
 x = keras.layers.GlobalAveragePooling2D()(x)
 # A Dense classifier with a single unit (binary classification)
@@ -681,7 +698,7 @@ model = keras.Model(inputs, outputs)
 model.summary()
 ```
 
-이전 연습에서 그랬던 것처럼 손실 및 지표 옵션으로 모델을 컴파일하는 과정이다. 여기서는 몇가지 다른 방법을 택한다 이전 분류 문제에 여러개의 레이블 범주가 있었다.  그래서 손실 계산을 위한 범주형 크로스 엔트로피를 선택했지만 이번에는 바이너리 분류 문제(Bo인지 아닌지 여부)만 있으므로 또한 기존 정확도 대신 바이너리 정확도를 사용하여 모델을 컴파일한다.
+이전 연습에서 그랬던 것처럼 손실 및 지표 옵션으로 모델을 컴파일하는 과정이다. 여기서는 몇가지 다른 방법을 택한다 이전 분류 문제에 여러개의 레이블 범주가 있었다. 그래서 손실 계산을 위한 범주형 크로스 엔트로피를 선택했지만 이번에는 바이너리 분류 문제(Bo인지 아닌지 여부)만 있으므로 또한 기존 정확도 대신 바이너리 정확도를 사용하여 모델을 컴파일한다.
 
 ```python
 # Important to use binary crossentropy and binary accuracy as we now have a binary classification problem
@@ -696,7 +713,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 datagen = ImageDataGenerator(
         samplewise_center=True,  # set each sample mean to 0
         rotation_range=10,  # randomly rotate images in the range (degrees, 0 to 180)
-        zoom_range = 0.1, # Randomly zoom image 
+        zoom_range = 0.1, # Randomly zoom image
         width_shift_range=0.1,  # randomly shift images horizontally (fraction of total width)
         height_shift_range=0.1,  # randomly shift images vertically (fraction of total height)
         horizontal_flip=True,  # randomly flip images
@@ -707,37 +724,35 @@ datagen = ImageDataGenerator(
 
 ```python
 # load and iterate training dataset
-train_it = datagen.flow_from_directory('data/presidential_doggy_door/train/', 
-                                       target_size=(224, 224), 
-                                       color_mode='rgb', 
-                                       class_mode='binary', 
+train_it = datagen.flow_from_directory('data/presidential_doggy_door/train/',
+                                       target_size=(224, 224),
+                                       color_mode='rgb',
+                                       class_mode='binary',
                                        batch_size=8)
 # load and iterate validation dataset
-valid_it = datagen.flow_from_directory('data/presidential_doggy_door/valid/', 
-                                      target_size=(224, 224), 
-                                      color_mode='rgb', 
-                                      class_mode='binary', 
+valid_it = datagen.flow_from_directory('data/presidential_doggy_door/valid/',
+                                      target_size=(224, 224),
+                                      color_mode='rgb',
+                                      class_mode='binary',
                                       batch_size=8)
 
 model.fit(train_it, steps_per_epoch=12, validation_data=valid_it, validation_steps=4, epochs=20)
 ```
 
-### 결과 : 전이학습을 통해 상당히 상당히 정확도가 높은 모델을 얻을 수 있었다. 
-
+### 결과 : 전이학습을 통해 상당히 상당히 정확도가 높은 모델을 얻을 수 있었다.
 
 </div>
 </details>
 
-
 <details>
 <summary> 7.파인튜닝 </summary>
-<div markdown="1">  
+<div markdown="1">
 
-이제 파인튜닝이라는 요령을 통해 모델을 개선할 수 있다. 파인튜닝을 학기위해서는 모델을 동결 이후 아주작은 학습률로 트레이닝 하여야 한다. 
-이 단계는 동결된 레이어를 포함하는 모델이 완전히 트레이닝된 후에만 수행해야 한다. 
+이제 파인튜닝이라는 요령을 통해 모델을 개선할 수 있다. 파인튜닝을 학기위해서는 모델을 동결 이후 아주작은 학습률로 트레이닝 하여야 한다.
+이 단계는 동결된 레이어를 포함하는 모델이 완전히 트레이닝된 후에만 수행해야 한다.
 
 ```python
-### 예측을 위한 함수 ### 
+### 예측을 위한 함수 ###
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 from tensorflow.keras.preprocessing import image as image_utils
@@ -782,13 +797,13 @@ model.compile(optimizer=keras.optimizers.RMSprop(learning_rate = .00001),  # Ver
 model.fit(train_it, steps_per_epoch=12, validation_data=valid_it, validation_steps=4, epochs=10)
 ```
 
-
 ```python
 make_predictions('data/presidential_doggy_door/valid/bo/bo_20.jpg')
 make_predictions('data/presidential_doggy_door/valid/bo/bo_20.jpg')
 presidential_doggy_door('data/presidential_doggy_door/valid/not_bo/131.jpg')
 presidential_doggy_door('data/presidential_doggy_door/valid/bo/bo_29.jpg')
 ```
+
 ### 결과 : 전이학습을 이용하면 작은데이터로도 좋은 성능의 모델을 만들 수 있다.
 
 </div>
@@ -796,13 +811,14 @@ presidential_doggy_door('data/presidential_doggy_door/valid/bo/bo_29.jpg')
 
 <details>
 <summary>8.시퀀스 데이터 </summary>
-<div markdown="1">  
+<div markdown="1">
 
-시퀀스 데이터의 예시를 위해 텍스트 문장을 사용한다. 기본적으로 언어는 문자가 모여 단어를 이루고 단어가 모여 문장을 이루는 형식의 시퀀스 데이터로 구성된다. 시퀀스 데이터의 또 다른 예로는 시간에 따른 주가와 날씨 데이터가 있다. 
+시퀀스 데이터의 예시를 위해 텍스트 문장을 사용한다. 기본적으로 언어는 문자가 모여 단어를 이루고 단어가 모여 문장을 이루는 형식의 시퀀스 데이터로 구성된다. 시퀀스 데이터의 또 다른 예로는 시간에 따른 주가와 날씨 데이터가 있다.
 
 RNN 모델을 사용하기 위한 뉴욕타임즈의 헤드라인 데이터만을 로드
+
 ```python
-import os 
+import os
 import pandas as pd
 
 nyt_dir = 'data/nyt_dataset/articles/'
@@ -818,7 +834,6 @@ len(all_headlines)
 ```
 
 컴퓨터가 이해할 수 있는방식으로 토큰화를 위해 필터링이후 토큰화진행
-
 
 ```python
 # Remove all headlines with the value of "Unknown"
@@ -841,16 +856,16 @@ print(subset_dict)
 tokenizer.texts_to_sequences(['a','man','a','plan','a','canal','panama'])
 ```
 
-토큰화 과정이 끝났으면 각 단어를 표현숫자로 변환한다. 
+토큰화 과정이 끝났으면 각 단어를 표현숫자로 변환한다.
 예를 들면 헤드라인 "nvidia launches ray tracing gpus"를 사용해 보면. 각 단어는 해당하는 숫자(예: nvidia - 5, launches - 22, ray - 94, tracing - 16, gpus - 102)로 대체되며 전체 시퀀스는 [5, 22, 94, 16, 102]가 된다.
 
 ```python
-# Convert data to sequence of tokens 
+# Convert data to sequence of tokens
 input_sequences = []
 for line in all_headlines:
     # Convert our headline into a sequence of tokens
     token_list = tokenizer.texts_to_sequences([line])[0]
-    
+
     # Create a series of sequences for each headline
     for i in range(1, len(token_list)):
         partial_sequence = token_list[:i+1]
@@ -888,11 +903,14 @@ from tensorflow.keras import utils
 labels = utils.to_categorical(labels, num_classes=total_words)
 ```
 
-이제 모델을 생성하는 과정이다. 
+이제 모델을 생성하는 과정이다.
+
 1. 임베딩
-- 이 레이어는 토큰화된 시퀀스를 취하여 트레이닝 데이터세트의 모든 단어에 대한 임베딩을 학습하는 과정이며  개념상 임베딩의 목표는 피처의 일부나 전부의 차원 수를 줄이는 것이다.. 이 경우에는 각 단어를 벡터로 표현하며, 해당 벡터 내의 정보에 각 단어 간의 관계가 포함된다.
+
+- 이 레이어는 토큰화된 시퀀스를 취하여 트레이닝 데이터세트의 모든 단어에 대한 임베딩을 학습하는 과정이며 개념상 임베딩의 목표는 피처의 일부나 전부의 차원 수를 줄이는 것이다.. 이 경우에는 각 단어를 벡터로 표현하며, 해당 벡터 내의 정보에 각 단어 간의 관계가 포함된다.
 
 2. LSTM
+
 - LSTM은 장기적인 정보를 학습하고 유지할 수 있는 특수한 유형의 순환 레이어이다.
 
 ```python
@@ -900,7 +918,7 @@ from tensorflow.keras.layers import Embedding, LSTM, Dense, Dropout
 from tensorflow.keras.models import Sequential
 
 # Input is max sequence length - 1, as we've removed the last word for the label
-input_len = max_sequence_len - 1 
+input_len = max_sequence_len - 1
 
 model = Sequential()
 
@@ -967,10 +985,9 @@ for seed in seed_texts:
 </div>
 </details>
 
-
 <details>
 <summary>  9. 이미지개선 </summary>
-<div markdown="1">  
+<div markdown="1">
 
 ```python
 from tensorflow import keras
@@ -1011,7 +1028,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 datagen = ImageDataGenerator(
         samplewise_center=True,  # set each sample mean to 0
         rotation_range=10,  # randomly rotate images in the range (degrees, 0 to 180)
-        zoom_range = 0.1, # Randomly zoom image 
+        zoom_range = 0.1, # Randomly zoom image
         width_shift_range=0.1,  # randomly shift images horizontally (fraction of total width)
         height_shift_range=0.1,  # randomly shift images vertically (fraction of total height)
         horizontal_flip=True,  # randomly flip images
@@ -1022,14 +1039,14 @@ datagen = ImageDataGenerator(
 ## 20195298 박준용 ##
 
 # load and iterate training dataset
-train_it = datagen.flow_from_directory('data/fruits/train/', 
-                                       target_size=(224, 224), 
-                                       color_mode='rgb', 
+train_it = datagen.flow_from_directory('data/fruits/train/',
+                                       target_size=(224, 224),
+                                       color_mode='rgb',
                                        class_mode="categorical")
 # load and iterate validation dataset
-valid_it = datagen.flow_from_directory('data/fruits/valid/', 
-                                      target_size=(224, 224), 
-                                      color_mode='rgb', 
+valid_it = datagen.flow_from_directory('data/fruits/valid/',
+                                      target_size=(224, 224),
+                                      color_mode='rgb',
                                       class_mode="categorical")
 ```
 
@@ -1041,19 +1058,15 @@ model.fit(train_it,
           epochs=10)
 ```
 
-
-
 </div>
 </details>
 
-
 <img width="803" alt="20195298_박준용" src="https://user-images.githubusercontent.com/79856225/172140056-2a099223-1118-4f85-8054-8308e8b7f6bd.png">
 
-
-<!-- 
+<!--
 <details>
 <summary>  </summary>
-<div markdown="1">  
+<div markdown="1">
 
 
 </div>
