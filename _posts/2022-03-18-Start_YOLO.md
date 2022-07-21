@@ -8,7 +8,7 @@ classes:
   - landing
   - dark-theme
 # layout: posts
-date: 2022-07-22
+date: 2022-07-21
 show_date: true
 categories:
   - YOLO
