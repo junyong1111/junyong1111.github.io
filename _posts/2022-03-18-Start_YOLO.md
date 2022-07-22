@@ -206,6 +206,35 @@ imShow('predictions.jpg')
 
 
 
+## 커스텀 데이터 학습
+
+<details>
+<summary> 크롤링 </summary>
+<div markdown="1">
+
+### 커스텀 데이터를 학습시키기 위해서는 자신이 원하는 데이터셋이 필요하다. 크롤링을 해서 이미지를 얻는 방법은 여러가지가 존재 한다 원하는 자신이 원하는 방법을 이용하여 학습에 필요한 이미지파일을 50~100장 정도 수집한다.
+[크롤링](https://junyong1111.github.io/크롤링/selenium/크롤링셋팅/)
 
 
 
+</div>
+</details>
+
+##### -------------------- 원하는 이미지 크롤링
+
+
+
+
+
+
+
+
+<!--
+<details>
+<summary>  </summary>
+<div markdown="1">
+
+</div>
+</details>
+----------------------
+-->
