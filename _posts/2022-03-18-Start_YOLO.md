@@ -226,6 +226,10 @@ imShow('predictions.jpg')
 
 ### 학습과정에서 가장 힘든 부분이라고 생각한다 정말 단순 반복 작업이고 데이터의 양이 많거나 클래스가 많은 경우 상당한 시간이 걸린다..
 
+라벨링 프로그램인 labelImg을 이용하여 클래스별 라벨링 진행
+
+[라벨링](https://github.com/heartexlabs/labelImg)
+해당 깃허브에 들어가서 자신의 상황에 맞게 labelImg를 다운받은 후 실행시켜준다.
 
 
 </div>
