@@ -232,6 +232,7 @@ imShow('predictions.jpg')
 해당 깃허브에 들어가서 자신의 상황에 맞게 labelImg를 다운받은 후 실행시켜준다.
 
 
+
 </div>
 </details>
 
