@@ -3,7 +3,7 @@ title: "#3 MonoDB model & Schema"
 header:
 #   overlay_image: /assets/images/
 # teaser: /assets/images/flutter.png
-show_date: true
+show_date: false
 layout: single
 date: 2022-12-28
 classes:
