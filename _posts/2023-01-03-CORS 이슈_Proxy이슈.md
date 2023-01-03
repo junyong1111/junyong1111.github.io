@@ -1,5 +1,5 @@
 ---
-title: "Compiled with problems:X 에러 발생 시 "
+title: "#Error Compiled with problems:X 에러 발생 시 "
 header:
 #   overlay_image: /assets/images/
 # teaser: /assets/images/flutter.png
