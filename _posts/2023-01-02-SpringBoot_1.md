@@ -1,5 +1,5 @@
 ---
-title: "0. 인텔리제이 설치"
+title: " #0.인텔리제이 설치"
 header:
 #   overlay_image: /assets/images/
 # teaser: /assets/images/flutter.png

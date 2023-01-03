@@ -1,5 +1,5 @@
 ---
-title: "1. 프로젝트 생성"
+title: " #1.프로젝트 생성"
 header:
 #   overlay_image: /assets/images/
 # teaser: /assets/images/flutter.png
