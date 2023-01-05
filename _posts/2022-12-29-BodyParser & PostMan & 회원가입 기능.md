@@ -13,7 +13,7 @@ categories:
   - Nodejs, Express, MongoDB, BodyParser, PostMan, Nodemon
 ---
 
-### 본 정리는 인프론 John Ahn 따라하며 배우는 노드, 리액트 시리즈 - 기본 강의를 참고하였습니다.
+### 본 정리는 인프런 John Ahn 따라하며 배우는 노드, 리액트 시리즈 - 기본 강의를 참고하였습니다.
 
 <img width="513" alt="스크린샷 2022-12-27 오후 9 01 16" src="https://user-images.githubusercontent.com/79856225/209955590-4361cd62-0ab5-4dde-8fd0-1fd080e344aa.png">
 
