@@ -310,6 +310,52 @@ int solution(string dartResult) {
 }
 ```
 
+### [3차] 압축
+- **문제 설명**
+
+신입사원 어피치는 카카오톡으로 전송되는 메시지를 압축하여 전송 효율을 높이는 업무를 맡게 되었다. 메시지를 압축하더라도 전달되는 정보가 바뀌어서는 안 되므로, 압축 전의 정보를 완벽하게 복원 가능한 무손실 압축 알고리즘을 구현하기로 했다.
+어피치는 여러 압축 알고리즘 중에서 성능이 좋고 구현이 간단한 LZW(Lempel–Ziv–Welch) 압축을 구현하기로 했다. LZW 압축은 1983년 발표된 알고리즘으로, 이미지 파일 포맷인 GIF 등 다양한 응용에서 사용되었다.
+
+
+- 해결방법
+해당 문제는 map을 이용하여 사전에 값을 넣고 그 key value를 통해 정답을 찾아가는 방식이다. map 관련해서 아직 미숙하여 시간이 오래 걸렸다.
+- map[key] => 해당 방식으로 map의 접근하면 바로 그 key값에 값을 바꾸는 것이므로 초기화하는 경우가 아니면 사용하지 않는다.
+- map.at(key) => key값으로 접근하고자 한다면 at을 이용하여 접근해야 한다.
+- map.count(key) => 해당 방식으로 key값의 존재 여부를 확인할 수도 있다.
+
+```c++
+#include <string>
+#include <vector>
+#include <map>
+
+using namespace std;
+
+vector<int> solution(string msg) {
+    vector<int> answer;
+    map<string, int>map;
+    int i = 1;
+    for(i=1; i<= 26; i++){
+        string str = "";
+        str = 'A' + i-1;
+        map.insert(make_pair(str,i));
+    }
+    // 길이가 1인경우 조건에 맞게 사전 생성
+    
+    string compare = "";
+    for(int j=0; j<msg.size(); j++){
+        compare = compare + msg[j];
+        if(map.count(compare) == 0){ // 현재 입력과 일치치하는 가장 긴 문자열 w이 없다면
+            map.insert(make_pair(compare, i++)); // 해당 값을 사전에 등록
+            compare.erase(compare.end()-1); // 맨 마지막 글자를 삭제
+            answer.push_back(map.at(compare)); // 입력값을 제외한 이전 문자열에 대한 사전값 등록
+            compare = msg[j]; // 문자 갱신
+        }        
+    }
+    answer.push_back(map.at(compare));
+    return answer;
+}
+```
+
 </div>
 </details>
 
@@ -357,7 +403,6 @@ vector<int> solution(vector<string> name, vector<int> yearning, vector<vector<st
 }
 
 ```
-
 
 ### 2. 음양 더하기
 - 문제 설명 : 어떤 정들이 있습니다. 이 정수들의 절댓값을 차례대로 담은 정수 배열 absolutes와 이 정수들의 부호를 차례대로 담은 불리언 배열 signs가 매개변수로 주어집니다. 실제 정수들의 합을 구하여 return 하도록 solution 함수를 완성하시오.
